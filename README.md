@@ -12,7 +12,7 @@ vencedor.
  |  [<img src="https://avatars.githubusercontent.com/hivisson1002?v=4" width=115><br><sub>Hebert Ivisson</sub>](https://github.com/hivisson1002) |  [<img src="https://avatars.githubusercontent.com/caymiferreira?v=4" width=115><br><sub>Caymi Ferreira</sub>](https://github.com/caymiferreira) | [<img src="https://avatars.githubusercontent.com/gustavoataidez?v=4" width=115><br><sub>Luis Gustavo</sub>](https://github.com/gustavoataidez) |
 | :---: | :---: | :---: |
 
-## Conteúdo de consulta para realização do projeto (sites, livros, artigos, códigos prontos, etc.)
+## Conteúdo de consulta para realização do projeto.
 Observando somente os conteúdos e anotações discutidos em sala de aula, juntamente com alguns vídeos relacionados ao tema das listas encadeadas, como complemento ao nosso aprendizado.
 
 SITE: Algoritmos em Python: Estrutura de dados/Listas encadeadas- <br> https://algoritmosempython.com.br/cursos/algoritmos-python/estruturas-dados/listas-encadeadas/<br>
