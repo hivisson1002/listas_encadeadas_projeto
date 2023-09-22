@@ -5,7 +5,7 @@ class PecaDomino:
         self.lado1 = lado1
         self.lado2 = lado2
 
-    def __repr__(self): # Método para representação da peça, retorna uma string com os lados
+    def __repr__(self):
         return f'[{self.lado1},{self.lado2}]'
 
 class ListaEncadeadaNoh:
@@ -18,6 +18,9 @@ class ListaEncadeada:
         self.head = None
         self.tail = None
 
+    def is_empty(self):
+        return self.head is None
+
     def add(self, peca):
         novo_no = ListaEncadeadaNoh(peca)
         if not self.head:
@@ -27,18 +30,18 @@ class ListaEncadeada:
             self.tail.proximo = novo_no
             self.tail = novo_no
 
-    def remove(self, piece):
+    def remove(self, peca):
         if not self.head:
             return
 
-        if self.head.peca == piece:
+        if self.head.peca == peca:
             self.head = self.head.proximo
             if not self.head:
                 self.tail = None
             return
 
         atual = self.head
-        while atual.proximo and atual.proximo.piece != piece:
+        while atual.proximo and atual.proximo.peca != peca:
             atual = atual.proximo
 
         if atual.proximo:
@@ -51,7 +54,6 @@ class JogoDomino:
         self.num_jogadores = num_jogadores
         self.num_pecas_por_jogador = num_pecas_por_jogador
         self.jogadores = [ListaEncadeada() for _ in range(num_jogadores)]
-        print([ListaEncadeada() for _ in range(num_jogadores)])
         self.conjunto_domino = self.criar_conjunto_domino()
         self.embaralhar_e_distribuir_pecas()
         self.tabuleiro = []
@@ -61,10 +63,11 @@ class JogoDomino:
         return conjunto_domino
 
     def embaralhar_e_distribuir_pecas(self):
-        random.shuffle(self.conjunto_domino)  # Embaralha o conjunto de dominós
+        random.shuffle(self.conjunto_domino)
         for i in range(self.num_jogadores):
-            self.jogadores[i] = self.conjunto_domino[:self.num_pecas_por_jogador]  # Distribui as peças para cada jogador
-            self.conjunto_domino = self.conjunto_domino[self.num_pecas_por_jogador:]  # Atualiza o conjunto de dominós
+            for _ in range(self.num_pecas_por_jogador):
+                peca = self.conjunto_domino.pop(0)
+                self.jogadores[i].add(peca)
 
     def jogar_jogo(self):
 
@@ -82,22 +85,25 @@ class JogoDomino:
                 print("\nPecas no tabuleiro:", [str(peca) for peca in self.tabuleiro])
                 peca_a_jogar = int(input("Escolha o índice da peça ou 9 para passar a vez: "))
 
-                if peca_a_jogar == 0:
+                if peca_a_jogar < 0:
+                    print("Índice de peça inválido. Tente novamente.")
+                elif peca_a_jogar == 0:
                     print("O jogo terminou.")
                     return
-
-                if peca_a_jogar == 9:
+                elif peca_a_jogar == 9:
                     print(f"Jogador {jogador_atual + 1} passou para o próximo jogador.")
                     break
-
-                peca_a_jogar -= 1
-
-                if peca_a_jogar < 0 or peca_a_jogar >= len(self.jogadores[jogador_atual]):
-                    print("Índice de peça inválido. Tente novamente.")
                 else:
-                    peca_escolhida = self.jogadores[jogador_atual][peca_a_jogar]
-                    if self.movimento_valido(peca_escolhida):
-                        self.jogadores[jogador_atual].pop(peca_a_jogar)
+                    peca_a_jogar -= 1
+                    noh_atual = self.jogadores[jogador_atual].head
+                    contar = 0
+                    while noh_atual and contar < peca_a_jogar:
+                        noh_atual = noh_atual.proximo
+                        contar += 1
+
+                    if noh_atual and self.movimento_valido(noh_atual.peca):
+                        peca_escolhida = noh_atual.peca
+                        self.jogadores[jogador_atual].remove(noh_atual.peca)
                         peca_valida = True
                     else:
                         print("Essa peça não pode ser jogada. Escolha outra.")
@@ -110,7 +116,7 @@ class JogoDomino:
             else:
                 print(f"\nJogador {jogador_atual + 1} não pôde jogar e passou para o próximo jogador.")
 
-            if not any(self.jogadores[jogador_atual]):
+            if self.jogadores[jogador_atual].is_empty():
                 print(f"\nJogador {jogador_atual + 1} venceu!")
                 break
 
@@ -142,10 +148,15 @@ class JogoDomino:
 
     def imprimir_todas_pecas(self):
         for i in range(self.num_jogadores):
-            print(f"Jogador {i + 1}: {[str(peca) for peca in self.jogadores[i]]}")
+            current_node = self.jogadores[i].head
+            print(f"Jogador {i + 1}: ", end="")
+            while current_node:
+                print(str(current_node.peca), end=" ")
+                current_node = current_node.proximo
+            print()
 
 if __name__ == "__main__":
     num_jogadores = 4
     num_pecas_por_jogador = 6
-    jogo_domino = JogoDomino(num_jogadores, num_pecas_por_jogador)  # Cria uma instância do jogo de dominó
+    jogo_domino = JogoDomino(num_jogadores, num_pecas_por_jogador)
     jogo_domino.jogar_jogo()
