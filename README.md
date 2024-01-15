@@ -1,6 +1,6 @@
 # <p align="center" > Dominó - listas encadeadas </p>
 
-## Resumo
+## <p align="center" > Resumo </p>
 O projeto se trata de um desafio proposto pelo professor para colocar em prática os conhecimetos em listas encadeadas com Python.
 O jogo de dominó é um jogo de mesa amplamente conhecido, onde os jogadores devem combinar peças com números
 correspondentes em suas extremidades. Neste projeto, você será responsável por criar um programa que simula a
@@ -8,7 +8,7 @@ manipulação das peças de dominó em um jogo. O programa deve ser capaz de cri
 distribuí-las aos jogadores, permitir que os jogadores joguem suas peças e verificar o estado do jogo para determinar o
 vencedor.
 
-# Integrantes
+# <p align="center" > Integrantes </p>
 
  |  [<img src="https://avatars.githubusercontent.com/hivisson1002?v=4" width=115><br><sub>Hebert Ivisson</sub>](https://github.com/hivisson1002) |  [<img src="https://avatars.githubusercontent.com/caymiferreira?v=4" width=115><br><sub>Caymi Ferreira</sub>](https://github.com/caymiferreira) | [<img src="https://avatars.githubusercontent.com/gustavoataidez?v=4" width=115><br><sub>Luis Gustavo</sub>](https://github.com/gustavoataidez) |
 | :---: | :---: | :---: |
