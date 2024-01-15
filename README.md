@@ -1,4 +1,5 @@
-# Dominó - listas encadeadas
+# <p align="center" > Dominó - listas encadeadas </p>
+
 ## Resumo
 O projeto se trata de um desafio proposto pelo professor para colocar em prática os conhecimetos em listas encadeadas com Python.
 O jogo de dominó é um jogo de mesa amplamente conhecido, onde os jogadores devem combinar peças com números
